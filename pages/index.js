@@ -1,9 +1,21 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useUser } from '../firebase/ useUser'
 
 export default function Home() {
-  return (
+  const { user, logout } = useUser()
+  console.log(user)
+  if (user) {
+    return (
+      <>
+        <h1>{ user.name }</h1>
+        <h3>{ user.email }</h3>
+        <button onClick={() => logout()}>Logout</button>
+      </>
+    )
+  }
+
+  else return (
     <div className={styles.container}>
       <Head>
         <title>Image Manager</title>
