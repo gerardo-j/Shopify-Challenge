@@ -27,7 +27,6 @@ const useUser = () => {
 
     useEffect(() => {
         const cancelAuthListener = firebase.auth().onIdTokenChanged( user => {
-            console.log(user)
             if (user) {
                 const userData = mapUserData(user)
                 setUserCookie(userData)

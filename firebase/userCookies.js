@@ -15,4 +15,4 @@ export const setUserCookie = (user) => {
 
 }
 
-export const removeCookies = () => cookies.remove('auth')
+export const removeUserCookie = () => cookies.remove('auth')
