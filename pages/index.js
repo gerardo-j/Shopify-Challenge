@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
-import { useUser } from '../firebase/useUser'
+import { useAuth } from '../firebase/auth'
 import Dashboard from '../components/Dashboard'
 
 export default function Home() {
-  const { user, logout } = useUser()
+  const { user } = useAuth()
   if (user) {
     return <Dashboard/>
   }
@@ -23,7 +23,7 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-        <Link href="/auth"><a>Click here to get started</a></Link>
+        <Link href="/login"><a>Click here to get started</a></Link>
         </p>
       </main>
     </div>

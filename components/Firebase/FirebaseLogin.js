@@ -1,12 +1,8 @@
 import initFirebase from '../../firebase/initFirebase'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import { setUserCookie } from '../../firebase/userCookies'
-import { mapUserData } from '../../firebase/mapUserData'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { useEffect, useState} from 'react'
-
-initFirebase()
 
 const FirebaseAuthConfig = {
     signInFlow: 'popup',
@@ -18,15 +14,10 @@ const FirebaseAuthConfig = {
     ],
     signInSuccessUrl: '/',
     credentialHelper: 'none',
-    callbacks: {
-        signInSucessWithAuthResult: async ( {user}, redirectUrl ) => {
-            const userData = mapUserData(user)
-            setUserCookie(userData)
-        } 
-    }
 }
 
-const FirebaseAuth = () => {
+const FirebaseLogin = () => {
+    initFirebase()
     const [renderAuth, setRenderAuth] = useState(false)
 
     useEffect(() => {
@@ -36,12 +27,12 @@ const FirebaseAuth = () => {
     }, [])
 
     return (
-        <div>
+        <>
             {
                 renderAuth ? <StyledFirebaseAuth uiConfig={FirebaseAuthConfig} firebaseAuth={firebase.auth()}/> : null
             }
-        </div>
+        </>
     )
 }
 
-export default FirebaseAuth
+export default FirebaseLogin

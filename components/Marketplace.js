@@ -19,6 +19,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import mainListItems from './listItems';
 import useStyles from '../styles/marketplace.styles'
+// import PurchaseButton from './Firebase/PurchaseButton';
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -98,9 +99,7 @@ function Marketplace({ albumn }) {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">
-                      $10 Purchase
-                    </Button>
+                    {/* <PurchaseButton albumnId={card.albumnId} photoId={card.id} /> */}
                   </CardActions>
                 </Card>
               </Grid>

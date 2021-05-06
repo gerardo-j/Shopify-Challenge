@@ -1,24 +1,20 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import { useUser } from '../../firebase/useUser'
-
-const PurchaseButton = () => {
+// import admin from '../../firebase/firebaseAdmin'
+// import verifyIdToken from '../../firebase/firebaseAdmin'
+const PurchaseButton = ({ albumnId, photoId}) => {
+    const admin = require('firebase-admin')
     const { user } = useUser()
-    const completePurchase = ({alblumn}) => {
+    const doc = firebase().collection('users').doc(user.id)
+
+    const completePurchase = () => {
         try {
-            firebase
-                .firestore()
-                .collection('users')
-                .doc(user.id)
-                .set({
-                    name: user.name,
-                    balance: 100,
-                    inventory: [{
-                        
-                    }],
-                    total_inventory: 0,
-                    total_sales: 0,
-                    total_bought: 0,
+            doc.update({
+                    balance: admin.firestore.FieldValue.increment(-10),
+                    inventory: admin.firestore.FieldValue.arrayUnion({ albumnId, photoId}),
+                    total_inventory: admin.firestore.FieldValue.increment(1),
+                    total_sales: admin.firestore.FieldValue.increment(1),
                 })
                 .then(alert('Successfully sent data to da cloud!'))
         } catch (err) {
