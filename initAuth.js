@@ -3,7 +3,7 @@ import { init } from 'next-firebase-auth'
 
 
 const initAuth = () => {
-  const privatekey = process.env.PRIVATE_KEY
+  // const privatekey = process.env.PRIVATE_KEY
   init({
     authPageURL: '/login',
     appPageURL: '/',
@@ -15,7 +15,7 @@ const initAuth = () => {
         projectId: 'shopify-challenge-1c592',//.replace(/\\n/g, '\n'),//process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
         clientEmail: process.env.CLIENT_EMAIL,
         // The private key must not be accesssible on the client side.
-        privateKey: privatekey//process.env.PRIVATE_KEY
+        privateKey: process.env.PRIVATE_KEY
       }
     },
     firebaseClientInitConfig: {
