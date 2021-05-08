@@ -30,7 +30,7 @@ const Balance = ({ token }) => {
           },
         })
         const data = await response.json()
-        if (isMount) setBalance(data.balance)
+      setBalance(data.balance)
       }
       fetchData()
       return () => { isMount = false}

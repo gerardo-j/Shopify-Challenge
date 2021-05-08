@@ -13,7 +13,7 @@ const FirebaseAuthConfig = {
             requireDisplayName: true
         }
     ],
-    signInSuccessUrl: '/',
+    // signInSuccessUrl: '/',
     credentialHelper: 'none',
     callbacks: {
         signInSuccessWithAuthResult: async ({ user }) =>  {
@@ -39,8 +39,8 @@ const FirebaseAuthConfig = {
     },
 }
 
+initAuth()
 const FirebaseLogin = () => {
-    initAuth()
     const [renderAuth, setRenderAuth] = useState(false)
 
     useEffect(() => {
