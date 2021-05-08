@@ -34,7 +34,7 @@ const initAuth = () => {
       overwrite: true,
       path: '/',
       sameSite: 'strict',
-      secure: false, // set this to false in local (non-HTTPS) development
+      secure: Boolean(process.env.NEXT_PUBLIC_HTTPS), // set this to false in local (non-HTTPS) development
       signed: true,
     },
   })

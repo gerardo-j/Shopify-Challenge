@@ -20,7 +20,7 @@ const Balance = ({ token }) => {
   var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   useEffect(async () => {
-    const response = await fetch('http://localhost:3000/api/getUser', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/getUser`, {
       method: 'GET',
       headers: {
         Authorization: token,

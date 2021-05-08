@@ -1,4 +1,4 @@
-import { verifyIdToken, setAuthCookies } from 'next-firebase-auth'
+import { verifyIdToken } from 'next-firebase-auth'
 import initAuth from '../../initAuth' // the module you created above
 import { getFirebaseAdmin } from 'next-firebase-auth'
 

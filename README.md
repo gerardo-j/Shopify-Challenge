@@ -12,6 +12,10 @@ You can retrived the required info from your firebase console.
 - `COOKIE_SECRET_PREVIOUS`
 - `PRIVATE_KEY`
 - `CLIENT_EMAIL`
+- `NEXT_PUBLIC_HOST_URL`
+- `NEXT_PUBLIC_HTTPS` (Set to `true` if using ssl)
+
+It is recommended to use http://localhost:3000 as the `NEXT_PUBLIC_HOST_URL` for local environment.
 
 Then run the development server:
 
