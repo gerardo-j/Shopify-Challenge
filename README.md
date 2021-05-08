@@ -3,6 +3,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 First, setup your environment variables in .env.local.
+This project needs Firebase to properly work along with firestore.
+It will use firestore to store the users data, and firebase to authenticate and allow for Scalability.
+
+You can retrived the required info from your firebase console.
 
 - `COOKIE_SECRET_CURRENT`
 - `COOKIE_SECRET_PREVIOUS`
