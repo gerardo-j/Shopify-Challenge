@@ -7,9 +7,9 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import LayersIcon from '@material-ui/icons/Layers';
 import Link from 'next/link'
-import Logout from './Firebase/Logout'
+import Logout from './Logout'
 
-const mainListItems = (
+const mainListItems = () => (
   <div>
     <Link href="/">
       <a>
@@ -21,12 +21,16 @@ const mainListItems = (
         </ListItem>
       </a>
     </Link>
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItem>
+    <Link href="/inventory">
+      <a>
+        <ListItem button>
+          <ListItemIcon>
+            <ShoppingCartIcon />
+          </ListItemIcon>
+          <ListItemText primary="Inventory" />
+        </ListItem>
+      </a>
+    </Link>
     <Link href="/marketplace">
       <a>
         <ListItem button>

@@ -1,12 +1,9 @@
-import React from 'react';
-import Link from '@material-ui/core/Link';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
+import { useAuthUser, withAuthUser } from 'next-firebase-auth';
 
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 const useStyles = makeStyles({
   balanceContext: {
@@ -14,19 +11,36 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Balance() {
+
+
+const Balance = ({ token }) => {
+  const [balance, setBalance] = useState(0)
   const classes = useStyles();
   const date = new Date();
   var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+  useEffect(async () => {
+    const response = await fetch('http://localhost:3000/api/getUser', {
+      method: 'GET',
+      headers: {
+        Authorization: token,
+      },
+    })
+    const data = await response.json()
+
+    setBalance(data.balance)
+  }, [balance])
   return (
-    <React.Fragment>
+    <div style={{textAlign: "center"}}>
       <Title>Current Balance</Title>
       <Typography component="p" variant="h4">
-        $3,024.00
+        ${balance}
       </Typography>
       <Typography color="textSecondary" className={classes.balanceContext}>
         on {date.getDate()} {months[date.getMonth()]}, {date.getFullYear()}
       </Typography>
-    </React.Fragment>
+    </div>
   );
 }
+
+export default withAuthUser()(Balance)

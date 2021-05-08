@@ -1,31 +1,29 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
-import { useAuth } from '../firebase/auth'
+import Wrapper from '../components/Wrapper'
+import Loader from '../components/Loader'
+import 'firebase/auth'
+import { withAuthUser, withAuthUserTokenSSR, AuthAction } from 'next-firebase-auth'
+import 'firebase/firestore';  // This is very important
 import Dashboard from '../components/Dashboard'
 
-export default function Home() {
-  const { user } = useAuth()
-  if (user) {
-    return <Dashboard/>
+export const getServerSideProps = withAuthUserTokenSSR()(async ({ AuthUser }) => {
+  const token = await AuthUser.getIdToken()
+  return {
+    props: {
+      token: token
+    }
   }
+})
 
-  else return (
-    <div className={styles.container}>
-      <Head>
-        <title>Image Manager</title>
-        <meta name="description" content="Manage your images" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to the <a href="/">Image Manager!</a>
-        </h1>
-
-        <p className={styles.description}>
-        <Link href="/login"><a>Click here to get started</a></Link>
-        </p>
-      </main>
-    </div>
-  )
+const Home = ({ token }) => {
+    return (
+      <Wrapper title="Dashboard">
+        <Dashboard token={token}/>
+      </Wrapper>)
 }
+
+export default withAuthUser({
+  whenUnauthedBeforeInit: AuthAction.SHOW_LOADER,
+  LoaderComponent: Loader,
+  whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN,
+  authPageURL: '/login'
+})(Home)

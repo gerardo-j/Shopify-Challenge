@@ -1,4 +1,4 @@
-import firebase from 'firebase/app'
+import { useAuthUser } from 'next-firebase-auth'
 import { useRouter } from 'next/router'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -7,10 +7,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 
 const Logout = () => {
+  const AuthUser = useAuthUser()
   const router = useRouter()
     return (
         <ListItem onClick={ async () => {
-          await firebase.auth().signOut()
+          await AuthUser.signOut()
           router.push('/')
         }} button>
           <ListItemIcon>
