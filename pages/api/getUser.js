@@ -4,8 +4,9 @@ import { getFirebaseAdmin } from 'next-firebase-auth'
 
 initAuth()
 
+
 const handler = async (req, res) => {
-  console.log(process.env.KEY)
+
     try {
       const AuthUser = await verifyIdToken(req.headers.authorization)
   
