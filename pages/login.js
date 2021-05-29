@@ -6,11 +6,6 @@ import Wrapper from "../components/Wrapper"
 const auth = () => {
     return (
         <>
-            <Head>
-                <title>Image Manager</title>
-                <meta name="description" content="Manage your images" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
             <Wrapper title="Login">
                 <h1 className={styles.title}>
                     Welcome to the <a href="/">Image Manager!</a>

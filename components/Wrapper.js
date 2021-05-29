@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MainListItems from './listItems';
 import useStyles from '../styles/Wrapper.module'
+import Head from 'next/head'
 
 const Wrapper = ({ children, title }) => {
     
@@ -27,6 +28,11 @@ const Wrapper = ({ children, title }) => {
 
   return (
     <div className={classes.root}>
+      <Head>
+        <title>Image Manager | {title}</title>
+        <meta name="description" content="Manage your images" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
@@ -62,7 +68,7 @@ const Wrapper = ({ children, title }) => {
       </Drawer>
       <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-          <Container maxWidth="lg" className={classes.container}>
+          <Container maxWidth={false} className={classes.container}>
             {children}
           </Container>
       </main>
