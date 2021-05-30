@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Title from './Title';
-// import { useAuthUser, withAuthUser } from 'next-firebase-auth';
-
 
 const useStyles = makeStyles({
   balanceContext: {
@@ -11,32 +9,12 @@ const useStyles = makeStyles({
   },
 });
 
-
-
-const Balance = ({ token }) => {
-  const [balance, setBalance] = useState(0)
+const Balance = ({ balance }) => {
+  console.log("Balance component called")
   const classes = useStyles();
   const date = new Date();
   var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-  useEffect(() => {
-    let isMount = true
-    if (token) {
-      const fetchData = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/getUser`, {
-          method: 'GET',
-          headers: {
-            Authorization: token,
-          },
-        })
-        const data = await response.json()
-      setBalance(data.balance)
-      }
-      fetchData()
-      return () => { isMount = false}
-    }
-
-  }, [])
   return (
     <div style={{textAlign: "center"}}>
       <Title>Current Balance</Title>

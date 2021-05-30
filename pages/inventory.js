@@ -3,7 +3,6 @@ import Loader from '../components/Loader'
 import Inventory from '../components/Inventory'
 import { AuthAction, withAuthUserTokenSSR, withAuthUser, useAuthUser} from 'next-firebase-auth'
 
-
 export const getServerSideProps = withAuthUserTokenSSR({
   whenUnauthed: AuthAction.REDIRECT_TO_LOGIN,
 })(async ({ AuthUser }) => {
@@ -14,20 +13,19 @@ export const getServerSideProps = withAuthUserTokenSSR({
       Authorization: token,
     },
   })
-  const data = await response.json()
+  const userData = await response.json()
   return {
     props: {
-      user: data,
-      token: token
+      userData
     }
   }
 })
 
-const inventory = ({ user, token }) => {
+const inventory = ({ userData }) => {
     const AuthUser = useAuthUser()
     return (
       <Wrapper title="Inventory">
-        <Inventory token={token} userId={AuthUser.id} inventory={user.inventory}/>
+        <Inventory userData={userData} userId={AuthUser.id} />
       </Wrapper>
     )
 }

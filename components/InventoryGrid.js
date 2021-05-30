@@ -17,12 +17,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Orders({ title, userId, data }) {
-    const [datas, setInventory] = useState(data);
+export default function Orders({ title, userId, inv, setBalance }) {
+    const [inventory, setInventory] = useState(inv);
     const classes = useStyles();
     const updateInventory = id => {
-        setInventory( datas.filter(item => item.transaction_id !== id))
-        (datas)
+      setInventory( inventory.filter(item => item.transaction_id !== id))
+      setBalance( prev => prev + 10)
+      // (datas)
     }
 
   return (
@@ -38,7 +39,7 @@ export default function Orders({ title, userId, data }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {datas.map((tx, index) => (
+          {inventory.map((tx) => (
             <TableRow key={tx.transaction_id}>
               <TableCell>{tx.transaction_id}</TableCell>
               <TableCell>{tx.date}</TableCell>

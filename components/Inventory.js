@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import InventoryGrid from './InventoryGrid';
 import useStyles from '../styles/Wrapper.module'
 import Balance from './Balance';
 
-const Inventory = ({ token, userId, inventory }) => {
+const Inventory = ({ userId, userData }) => {
+  const [balance, setBalance] = useState(userData.balance)
   const classes = useStyles();
 
   return (
@@ -13,13 +14,13 @@ const Inventory = ({ token, userId, inventory }) => {
       {/* Inventory */}
       <Grid item xs={8}>
         <Paper className={classes.paper}>
-          <InventoryGrid title="Inventory" userId={userId} data={inventory}/>
+          <InventoryGrid title="Inventory" userId={userId} inv={userData.inventory} setBalance={setBalance}/>
         </Paper>
       </Grid>
       {/* Balance */}
       <Grid item xs={4}>
         <Paper className={classes.paper}>
-          <Balance token={token}/>
+          <Balance balance={balance}/>
         </Paper>
       </Grid>
     </Grid>

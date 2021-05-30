@@ -1,3 +1,5 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getFirebaseClient } from 'next-firebase-auth'
 import 'firebase/firestore';  // This is very important
 import Button from '@material-ui/core/Button';

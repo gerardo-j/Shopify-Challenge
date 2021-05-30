@@ -6,7 +6,7 @@ import Balance from './Balance';
 import useStyles from '../styles/Wrapper.module'
 
 
-const Dashboard = ({ token }) => {
+const Dashboard = ({ balance }) => {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -16,7 +16,7 @@ const Dashboard = ({ token }) => {
         {/* Current Balance */}
         <Grid item xs={12}>
           <Paper className={fixedHeightPaper}>
-            <Balance token={token} />
+            <Balance balance={balance} />
           </Paper>
         </Grid>
       </Grid>

@@ -1,9 +1,10 @@
 import FirebaseLogin from '../components/FirebaseLogin'
-import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Wrapper from "../components/Wrapper"
-const auth = () => {
+import { AuthAction, withAuthUser } from 'next-firebase-auth'
+
+const Login = () => {
     return (
         <>
             <Wrapper title="Login">
@@ -19,4 +20,8 @@ const auth = () => {
     )
 }
 
-export default auth
+export default withAuthUser({
+    whenAuthed: AuthAction.REDIRECT_TO_APP,
+    whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
+    whenUnauthedAfterInit: AuthAction.RENDER,
+})(Login)
