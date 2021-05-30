@@ -1,9 +1,6 @@
 import { init } from 'next-firebase-auth'
 
-
-
 const initAuth = () => {
-  // const privatekey = process.env.PRIVATE_KEY
   init({
     authPageURL: '/login',
     appPageURL: '/',
@@ -12,14 +9,14 @@ const initAuth = () => {
     // Required in most cases.
     firebaseAdminInitConfig: {
       credential: {
-        projectId: 'shopify-challenge-1c592',//.replace(/\\n/g, '\n'),//process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        projectId: 'shopify-challenge-1c592',
         clientEmail: process.env.CLIENT_EMAIL,
         // The private key must not be accesssible on the client side.
         privateKey: process.env.PRIVATE_KEY
       }
     },
     firebaseClientInitConfig: {
-      apiKey: 'AIzaSyCWJjqP0Syy4Ehwd8huhDG-D9XPWn1RhYw',//process.env.FIREBASE_API_KEY, // required
+      apiKey: 'AIzaSyCWJjqP0Syy4Ehwd8huhDG-D9XPWn1RhYw', // required
       authDomain: 'shopify-challenge-1c592.firebaseapp.com',
       databaseURL: 'shopify-challenge-1c592.firebaseapp.com',
       projectId: 'shopify-challenge-1c592',
