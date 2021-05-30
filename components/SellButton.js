@@ -1,12 +1,10 @@
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getFirebaseClient } from 'next-firebase-auth'
 import 'firebase/firestore';  // This is very important
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const PurchaseButton = ({ update, userId, albumId, date, photoId, thumbnailUrl, transaction_id}) => {
-    
+const PurchaseButton = ({ updateInventory, userId, albumId, date, photoId, thumbnailUrl, transaction_id}) => {
     const completePurchase = () => {
         const doc = getFirebaseClient().firestore().collection('user').doc(userId)
         try {
@@ -22,8 +20,7 @@ const PurchaseButton = ({ update, userId, albumId, date, photoId, thumbnailUrl, 
                     total_inventory: getFirebaseClient().firestore.FieldValue.increment(-1),
                     total_sales: getFirebaseClient().firestore.FieldValue.increment(1),
                 })
-                .then(update(transaction_id))
-                .then(alert('Successfully sold a photo!'))
+                .then(updateInventory(transaction_id))
         } catch (err) {
             console.log(err)
         }

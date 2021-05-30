@@ -2,7 +2,7 @@ import { getFirebaseClient } from 'next-firebase-auth'
 import 'firebase/firestore';  // This is very important
 import Button from '@material-ui/core/Button';
 
-const PurchaseButton = ({thumbnailUrl, userId, albumId, photoId}) => {
+const PurchaseButton = ({thumbnailUrl, userId, albumId, photoId, notify}) => {
     
     const completePurchase = () => {
         const doc = getFirebaseClient().firestore().collection('user').doc(userId)
@@ -21,7 +21,7 @@ const PurchaseButton = ({thumbnailUrl, userId, albumId, photoId}) => {
                     total_inventory: getFirebaseClient().firestore.FieldValue.increment(1),
                     total_bought: getFirebaseClient().firestore.FieldValue.increment(1),
                 })
-                .then(alert('Successfully purchased a photo!'))
+                .then(notify())
         } catch (err) {
             console.log(err)
         }

@@ -25,7 +25,6 @@ export const getServerSideProps = withAuthUserTokenSSR({
 })
 
 const Home = ({ balance }) => {
-  console.log(balance)
     return (
       <Wrapper title="Dashboard">
         <Dashboard balance={balance}/>

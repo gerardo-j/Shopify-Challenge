@@ -8,10 +8,21 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import useStyles from '../styles/Marketplace.module'
 import { useAuthUser, withAuthUser } from 'next-firebase-auth'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Marketplace = ({ album }) => {
   const AuthUser = useAuthUser();
   const classes = useStyles();
+  const notify = () => toast.success('Successfully bought for $10', {
+    position: "bottom-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: false,
+    draggable: true,
+    progress: undefined,
+});;
   return (
     <>
         <div className={classes.heroContent}>
@@ -41,13 +52,24 @@ const Marketplace = ({ album }) => {
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <PurchaseButton userId={AuthUser.id} albumId={card.albumId} photoId={card.id} thumbnailUrl={card.thumbnailUrl}/>
+                    <PurchaseButton notify={notify} userId={AuthUser.id} albumId={card.albumId} photoId={card.id} thumbnailUrl={card.thumbnailUrl}/>
                   </CardActions>
                 </Card>
               </Grid>
             ))}
           </Grid>
         </Container>
+        <ToastContainer
+                position="bottom-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+            />
     </>
   );
 }
