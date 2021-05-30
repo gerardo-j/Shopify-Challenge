@@ -12,13 +12,13 @@ const Inventory = ({ userId, userData }) => {
   return (
     <Grid container spacing={2}>
       {/* Inventory */}
-      <Grid item xs={8}>
+      <Grid item xs={12} sm={12} md={8}>
         <Paper className={classes.paper}>
           <InventoryGrid title="Inventory" userId={userId} inv={userData.inventory} setBalance={setBalance}/>
         </Paper>
       </Grid>
       {/* Balance */}
-      <Grid item xs={4}>
+      <Grid item xs={12} sm={12} md={4}>
         <Paper className={classes.paper}>
           <Balance balance={balance}/>
         </Paper>
