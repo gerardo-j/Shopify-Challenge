@@ -1,9 +1,7 @@
-import { verifyIdToken } from 'next-firebase-auth'
 import initAuth from '../../initAuth' // the module you created above
-import { getFirebaseAdmin } from 'next-firebase-auth'
+import { getFirebaseAdmin, verifyIdToken } from 'next-firebase-auth'
 
 initAuth()
-
 
 const handler = async (req, res) => {
 

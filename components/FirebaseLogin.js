@@ -1,10 +1,10 @@
 import initAuth from '../initAuth'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-import { getFirebaseClient } from 'next-firebase-auth'
 import 'firebase/firestore';  // This is very important
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import { useEffect, useState } from 'react'
+
 const FirebaseAuthConfig = {
     signInFlow: 'popup',
     signInOptions: [
@@ -13,28 +13,18 @@ const FirebaseAuthConfig = {
             requireDisplayName: true
         }
     ],
-    // signInSuccessUrl: '/',
+    signInSuccessUrl: '/',
     credentialHelper: 'none',
     callbacks: {
         signInSuccessWithAuthResult: async ({ user }) =>  {
-            try {
-                const data = {
-                    name: user.displayName,
-                    balance: 250,
-                    inventory: [], 
-                    total_inventory: 0,
-                    total_sales: 0,
-                    total_bought: 0,
-                }
-                const doc = await getFirebaseClient().firestore().collection('user').doc(user.uid)
-                await doc.set( data, { merge: true })
-                window.location.assign('/')
-                return false
-            } catch(e) {
-                console.error("Error adding document: ", e);
-                window.location.assign('/')
-                return false
-            }
+            await fetch(`${process.env.NEXT_PUBLIC_HOST_URL}/api/createUser`, {
+                method: 'GET',
+                headers: {
+                    userid: user.uid,
+                    displayname: user.displayName
+                },
+            })
+            return false; 
           }
     },
 }
